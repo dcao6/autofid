@@ -1,2 +1,24 @@
-'My Project' 
-Testing
+'Autofid'
+
+Autofid automatically localizes 32 anatomical fiducials within the human brain using trained regression forests
+(see paper:https://onlinelibrary.wiley.com/doi/full/10.1002/hbm.24693).
+
+A brief overview of each component is provided below.
+
+autofid_main.m: main code used to localize fiducials. Combines trained regression forest for testing and automatically
+formats an output .fcsv file (fiducial csv file, used primarily in 3D Slicer). See function header for more details.
+
+dummy.fcsv: blank file that keeps .fcsv style formatting. Used in autofid_main.m to initialize structure of .fcsv file.
+
+Haar_offsets.m: Code used to generate random Haar-like features. Already used to create coarse_haaroffset.mat, med_haaroffset.mat,
+and fine_haaroffset.mat.
+
+coarse_haaroffset.mat; med_haaroffset.mat; fine_haaroffset.mat: stored Haar-like feature offsets. DO NOT overwrite these stored offsets
+unless you wish to train regression forests using new randomized offsets.
+
+model training: folder containing code used to train coarse, medium, and fine level regression forests. Subfolders store the compact regression
+forest models used to make actual predictions.
+
+test_set: folder containing test images with ground-truth fiducials, as well as expected fiducial results from autofid.
+
+NIfTI_tools: folder containing specialized 'load_nii' code to load nifti files in older versions of MATLAB.
